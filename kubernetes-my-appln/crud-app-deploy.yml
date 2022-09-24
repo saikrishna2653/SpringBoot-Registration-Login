@@ -1,0 +1,22 @@
+# login-app-deploy.yml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: login-deploy
+  labels:
+    app: login-app
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: login-app
+    spec:
+      containers:
+      - name: login-container
+        image: saikrishna2653/login_registration
+        ports:
+        - containerPort: 8080
+  selector:
+    matchLabels:
+      app: login-app
