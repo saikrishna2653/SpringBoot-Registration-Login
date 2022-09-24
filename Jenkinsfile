@@ -9,7 +9,7 @@ pipeline {
     stage('Source') { // Get code
       steps {
         // get code from our Git repository
-        git 'https://github.com/saikrishna2653/crud_examples.git'
+        git 'https://github.com/saikrishna2653/SpringBoot-Registration-Login.git'
       }
     }
   /*  stage('Compile') { // Compile and do unit testing
@@ -25,7 +25,7 @@ pipeline {
 	steps {  
       sshagent(['deploy_user']) {
          sh '''		 
-	 scp /var/jenkins_home/workspace/curd-appln-k8s-deploy/target/Spring-Full-Security-1.0-SNAPSHOT.war Dockerfile $USER_ID@$DOCKER_HOST:/opt/docker;
+	 scp /var/jenkins_home/workspace/login-appln-k8s-deploy/target/Spring-Full-Security-1.0-SNAPSHOT.war Dockerfile $USER_ID@$DOCKER_HOST:/opt/docker;
 	 ssh $USER_ID@$DOCKER_HOST docker image rm -f login_registration || true;
 	 ssh $USER_ID@$DOCKER_HOST "cd /opt/docker && pwd && ls -lrt && docker build -t login_registration . ";  
          ssh $USER_ID@$DOCKER_HOST docker tag login_registration saikrishna2653/login_registration;  
